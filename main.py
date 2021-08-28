@@ -1,10 +1,10 @@
-import time
+from time import sleep
 import re
 from selenium import webdriver
 
 
 class KozelPromo:
-    """ Automatic form fill up in Kozel promotion using selenium and Chrome webdriver """
+    """ Automatic form fill up in Kozel promotion using selenium and Chrome web driver """
     def __init__(self):
         self.driver = webdriver.Chrome()
         self.driver.get('https://sprobujdwochzczech.pl/')
@@ -34,11 +34,11 @@ class KozelPromo:
             confirm = self.driver.find_element_by_xpath(confirm_xpath)
             confirm.click()
         email.submit()
-        time.sleep(2)
+        sleep(2)
         pdf_xpath = '//*[@id="sprobuj-ponownie"]/div/div/div/div/div/div/div/div[3]/div/div[1]/a'
         pdf = self.driver.find_element_by_xpath(pdf_xpath)
         pdf.click()
-        time.sleep(2)
+        sleep(2)
         home_xpath = '//*[@id="sprobuj-ponownie"]/div/div/div/div/div/div/div/div[3]/div/div[2]/a'
         home = self.driver.find_element_by_xpath(home_xpath)
         home.click()
@@ -85,10 +85,10 @@ def main():
     b_date = get_b_date()
     mail = get_mail()
     kp = KozelPromo()
-    time.sleep(2)
+    sleep(2)
     kp.close_cookie_popup()
     kp.fill_birthdate(b_date)
-    time.sleep(2)
+    sleep(2)
     code_list = kp.code_list('list.txt')
     if code_list:
         for code in kp.code_list('list.txt'):
